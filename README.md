@@ -28,3 +28,8 @@ Eg:
 000045008
 
 008010756
+
+
+# Code
+
+First, the puzzle is attempted to be solved by identifying common Sudoku moves such as naked and hidden singles, pairs, triples and quads. If the puzzle cannot be solved on handling these conditions, the code moves into a backtracking algorithm which employs recursion to find the correct placement of digits.
