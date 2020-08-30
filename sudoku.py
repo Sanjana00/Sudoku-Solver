@@ -1,4 +1,3 @@
-import numpy as np
 import sys
 import os
 
@@ -201,10 +200,14 @@ values = []
 
 if len(sys.argv) == 2:
     filename = sys.argv[1]
+
 if os.path.isfile(filename):
     with open(filename) as f:
         for row in f:
             values += [int(x) for x in row.strip()]
+else:
+    print("No such file exists")
+    sys.exit(0)
 
 board = dict(zip(BOARD, values))
 
