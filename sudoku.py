@@ -174,21 +174,28 @@ class Sudoku:
             self.solve_hidden_quads()
         if not self.is_solved():
             print("\nHmm this is a tough one, we need some backtracking here!\n")
-            self.solve_backtrack()
-    
+            if not self.solve_backtrack():
+                print("\nCannot be solved\n")
+
     def solve_backtrack(self):
-        ''' Solves a sudoku grid recursively by using trial and error '''
+        ''' Recursively solve the Sudoku grid by using trial and error '''
+        empty = self.get_empty()
+        if not empty:
+            return True
+        for i in range(1, 10):
+            if i in self.possible_move(empty):
+                self.board[empty] = i
+                if self.solve_backtrack():
+                    return True
+                self.board[empty] = 0
+        return False
+
+    def get_empty(self):
+        ''' Returns first empty position. If no empty positions found, return None '''
         for pos in BOARD:
             if self.board[pos] == 0:
-                for i in range(1, 10):
-                    if i in self.possible_move(pos):
-                        self.board[pos] = i
-                        self.solve_backtrack()
-                        self.board[pos] = 0
-                return
-        self.display()
-        self.validate()
-        sys.exit(0)
+                return pos
+        return None
 
     def display(self):
         ''' Displays the sudoku board '''
