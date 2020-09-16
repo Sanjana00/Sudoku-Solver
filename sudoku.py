@@ -183,8 +183,8 @@ class Sudoku:
         if not empty:
             return True
         possibles = self.possible_move(empty)
-        for i in possibles:
-            self.board[empty] = i
+        for possible in possibles:
+            self.board[empty] = possible
             if self.solve_backtrack():
                 return True
         self.board[empty] = 0
