@@ -187,7 +187,7 @@ class Sudoku:
             self.board[empty] = i
             if self.solve_backtrack():
                 return True
-            self.board[empty] = 0
+        self.board[empty] = 0
         return False
 
     def get_empty(self):
