@@ -182,12 +182,12 @@ class Sudoku:
         empty = self.get_empty()
         if not empty:
             return True
-        for i in range(1, 10):
-            if i in self.possible_move(empty):
-                self.board[empty] = i
-                if self.solve_backtrack():
-                    return True
-                self.board[empty] = 0
+        possibles = self.possible_move(empty)
+        for i in possibles:
+            self.board[empty] = i
+            if self.solve_backtrack():
+                return True
+            self.board[empty] = 0
         return False
 
     def get_empty(self):
